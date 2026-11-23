@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="User feedback and reviews for HowToCancel — built for people who want simple exits without hidden traps." />
+  <title>Testimonials &amp; Reviews — HowToCancel</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <style>
+    :root {
+                --brand-red: #dc3545;
+                --brand-dark: #111827;
+            }
+
+            body {
+                background-color: #f8fafc;
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+      .navbar {
+                background-color: var(--brand-dark);
+            }
+
+            .brand-logo {
+                width: 34px;
+                height: 34px;
+                object-fit: contain;
+                border-radius: 6px;
+            }
+    .page-header {
+      background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+    }
+    .quote-card {
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .quote-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0.5rem 1.25rem rgba(17, 24, 39, 0.08) !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Responsive Navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark sticky-top shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+                    <!-- Fallback hides broken img icon if logo.png isn't in the folder yet -->
+                    <img src="logo.jpg" alt="HowToCancel Logo" class="brand-logo" onerror="this.style.display='none'" />
+                    <span>HowTo<span class="text-danger">Cancel</span></span>
+                </a>
+
+                <button
+                    class="navbar-toggler border-0"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mainNav"
+                    aria-controls="mainNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto align-items-md-center gap-2 mt-2 mt-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#header">Home</a>
+                        </li>
+                        
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="#how-it-works">How It Works</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About Us</a>
+                        </li>
+                        <li>
+                            <button
+                                type="button"
+                                class="btn btn-outline-primary btn-sm fw-semibold px-3 text-light text-opacity-75 text-decoration-none"
+                                data-bs-toggle="modal"
+                                data-bs-target="#reviewFeedbackModal"
+                                style="font-size: medium; text-align:center">
+                                Leave a Review
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button
+                                type="button"
+                                class="btn btn-success btn-sm px-3 fw-semibold"
+                                data-bs-toggle="modal"
+                                data-bs-target="#submitModal">
+                                <i class="bi bi-plus-lg me-1"></i>Add a missing one to help others
+                            </button>
+                        </li>
+
+                        <li>
+                            <button
+                                type="button"
+                                class="btn btn-danger btn-sm px-3"
+                                data-bs-toggle="modal"
+                                data-bs-target="#reportIssueModal">
+                                Report a Problem
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+  <!-- Header Banner -->
+  <header class="page-header text-white py-5">
+    <div class="container py-2">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-8">
+          <span class="badge text-bg-danger mb-2 px-3 py-2">Community Feedback</span>
+          <h1 class="display-6 fw-bold mb-3">Built for people who want simple exits without hidden traps.</h1>
+          <p class="lead text-light text-opacity-75 mb-4">
+            See what users say about finding clear cancellation paths, checking UPI Autopay mandates, and spotting billing traps early.
+          </p>
+          <div class="d-flex flex-wrap justify-content-center gap-2">
+            <button type="button" class="btn btn-primary fw-semibold px-4" data-bs-toggle="modal" data-bs-target="#reviewFeedbackModal">
+              Leave a Review
+            </button>
+            <button type="button" class="btn btn-outline-light fw-semibold px-4" data-bs-toggle="modal" data-bs-target="#reportIssueModal">
+              Report Outdated Steps
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container my-5">
+    <!-- Local Device Submissions (Visible if this browser submitted reviews) -->
+    <section id="localReviewsSection" class="mb-5 d-none">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <div>
+          <h2 class="h4 fw-bold mb-1">Saved on This Device</h2>
+          <p class="text-secondary small mb-0">Reviews you submitted in this browser (stored locally until published after verification).</p>
+        </div>
+        <button type="button" id="clearLocalReviewsBtn" class="btn btn-outline-secondary btn-sm">
+          Clear Local List
+        </button>
+      </div>
+      <div id="localReviewsGrid" class="row g-4"></div>
+    </section>
+
+    <!-- Community Reviews -->
+    <section aria-labelledby="reviewsHeading">
+      <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+        <div>
+          <h2 id="reviewsHeading" class="h4 fw-bold mb-1">Recent User Reviews</h2>
+          <p class="text-secondary small mb-0">
+            Feedback from people using HowToCancel to stop unwanted renewals and manage recurring payments.
+          </p>
+        </div>
+      </div>
+        
+    
+
+      <div class="row g-4 mb-5">
+          
+          <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="badge text-bg-light border text-secondary">Netflix</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;Clean interface with zero bloat—just the practical steps to stop an upcoming renewal and verify the end date.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Camila Silva</strong>
+                <span class="text-muted"> &middot; Sao Paulo, Brazil</span>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+          
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="badge text-bg-light border text-secondary">GPay Autopay</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;I cancelled a trial inside the app, then checked my UPI mandate list because of the note here and revoked the active autopay before the next billing cycle.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Ananya Sen</strong>
+                <span class="text-muted"> &middot; Kolkata</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="badge text-bg-light border text-secondary">Adobe Creative Cloud</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;No fluff or long articles—just the exact account billing path to turn off auto-renewal without getting stuck in support loops.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Rohan Chatterjee</strong>
+                <span class="text-muted"> &middot; Howrah</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="4 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="badge text-bg-light border text-secondary">Hotstar</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;One app moved its billing button recently, and the problem report form made it easy to flag the change so the guide stays accurate.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Priyanka Das</strong>
+                <span class="text-muted"> &middot; Durgapur</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="badge text-bg-light border text-secondary">PhonePe Mandates</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;Super helpful reminder to check active mandates separately after uninstalling an app. Saved me from another surprise monthly debit.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Sourav Mondal</strong>
+                <span class="text-muted"> &middot; Siliguri</span>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+          <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="badge text-bg-light border text-secondary">Apple Subscriptions</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;Had a free trial about to renew on iOS and went straight to the right subscription menu instead of digging through app settings.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Daniel Brooks</strong>
+                <span class="text-muted"> &middot; Austin, TX</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="badge text-bg-light border text-secondary">Spotify</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;Straightforward steps and a good reminder to check which email account holds the active plan before switching.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Hannah Patel</strong>
+                <span class="text-muted"> &middot; London, UK</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="4 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="badge text-bg-light border text-secondary">Adobe Creative Cloud</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;Helpful heads-up on checking billing cycle dates and plan terms so you know what to expect when cancelling a membership.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Lucas Meyer</strong>
+                <span class="text-muted"> &middot; Berlin, Germany</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="badge text-bg-light border text-secondary">Google Play Billing</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;Fast, easy to read on a phone, and saved me from forgetting a monthly cloud storage renewal I no longer needed.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Keiko Takahashi</strong>
+                <span class="text-muted"> &middot; Osaka, Japan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="4 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="badge text-bg-light border text-secondary">Canva Pro</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;Clear walkthrough for checking team vs. personal billing settings before turning off auto-renew.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Owen Gallagher</strong>
+                <span class="text-muted"> &middot; Toronto, Canada</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="badge text-bg-light border text-secondary">Netflix</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;Clean layout, loads quickly on mobile data, and gets straight to the cancellation toggle without pop-up clutter.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Neha Mukherjee</strong>
+                <span class="text-muted"> &middot; Bardhaman</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 quote-card">
+            <div class="card-body p-4 d-flex flex-column">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-warning small" aria-label="4 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="badge text-bg-light border text-secondary">Cult.fit</span>
+              </div>
+              <p class="text-secondary small flex-grow-1 mb-3">
+                &ldquo;Clear breakdown of what happens before your billing cycle ends versus what to watch out for on renewal dates.&rdquo;
+              </p>
+              <div class="border-top pt-2 small">
+                <strong class="text-dark">Arjun Roy</strong>
+                <span class="text-muted"> &middot; Kalyani</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Callout -->
+    <section class="card border-0 shadow-sm bg-white">
+      <div class="card-body p-4 p-md-5 d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+        <div>
+          <h2 class="h5 fw-bold mb-1">Tried a guide or spotted a changed cancellation screen?</h2>
+          <p class="text-secondary small mb-0">
+            Your review or step update helps keep HowToCancel clear, accurate, and genuinely useful for everyday users.
+          </p>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-primary btn-sm fw-semibold px-3" data-bs-toggle="modal" data-bs-target="#reviewFeedbackModal">
+            Leave a Review
+          </button>
+          <button type="button" class="btn btn-outline-danger btn-sm fw-semibold px-3" data-bs-toggle="modal" data-bs-target="#submitModal">
+            Submit a missing subscription steps to help others
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Responsive Footer -->
+        <footer class="bg-dark text-white pt-4 pb-3 mt-auto border-top border-secondary border-opacity-25">
+            <div class="container">
+                <div class="row gy-4 align-items-start justify-content-between">
+                    <!-- Brand & Helpful Mission -->
+                    <div class="col-12 col-lg-5 text-center text-lg-start">
+                        <a href="index.html" class="text-white text-decoration-none fw-bold fs-5 d-inline-block mb-1">
+                            HowToCancel
+                        </a>
+                        <p class="text-secondary small mb-2">
+                            Built for people who want simple exits without hidden traps. Clear steps for cancelling
+                            subscriptions and UPI mandates.
+                        </p>
+                        <p class="small text-light text-opacity-75 mb-0">
+                            Spotted a hidden cancellation trap?
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm p-0 align-baseline text-danger text-decoration-none fw-semibold"
+                                data-bs-toggle="modal"
+                                data-bs-target="#submitModal">
+                                Help others escape it &rarr;
+                            </button>
+                        </p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="col-6 col-md-4 col-lg-3 text-center text-lg-start">
+                        <h6 class="text-uppercase text-secondary small fw-semibold mb-2">Directory</h6>
+                        <ul class="list-unstyled small mb-0">
+                            <li class="mb-1">
+                                <a href="#guides" class="text-light text-opacity-75 text-decoration-none">All Guides</a>
+                            </li>
+                            <li class="mb-1">
+                                <a href="about.html" class="text-light text-opacity-75 text-decoration-none"
+                                    >About Us</a
+                                >
+                            </li>
+                            <li class="mb-1">
+                                <a href="testimonials.html" class="text-light text-opacity-75 text-decoration-none"
+                                    >Testimonials</a
+                                >
+                            </li>
+                            <li>
+                                <button
+                                    type="button"
+                                    class="btn btn-link btn-sm p-0 text-light text-opacity-75 text-decoration-none"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#submitModal">
+                                    Submit A Missing Subscription
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Community & Contact -->
+                    <div class="col-6 col-md-4 col-lg-3 text-center text-lg-start">
+                        <h6 class="text-uppercase text-secondary small fw-semibold mb-2">Community</h6>
+                        <ul class="list-unstyled small mb-0">
+                            <li class="mb-1">
+                                <a href="index.html#about" class="text-light text-opacity-75 text-decoration-none"
+                                    >How It Works</a
+                                >
+                            </li>
+                            <li class="mb-1">
+                                <a href="disclaimer.html" class="text-light text-opacity-75 text-decoration-none"
+                                    >Disclaimer & Terms</a
+                                >
+                            </li>
+                            <li>
+                                <a href="privacy.html" class="text-light text-opacity-75 text-decoration-none"
+                                    >Privacy & Policy</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="mailto:studentsbong@gmail.com"
+                                    class="text-light text-opacity-75 text-decoration-none"
+                                    >Contact</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="border-secondary border-opacity-25 my-3" />
+
+                <!-- Bottom Copyright & Verification Line -->
+                <div
+                    class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2 small text-secondary text-center text-sm-start">
+                    <p class="mb-0">
+                        &copy; <span id="footerYear">2026</span> HowToCancel. Open, community-powered subscription
+                        guide.
+                    </p>
+                    <p class="mb-0">
+  Independent user-help guide. Not affiliated with any listed app or company; steps are shared for educational help, not to harm any business.
+</p>
+                    <p class="mb-0">Guides are verified before publishing.</p>
+                </div>
+            </div>
+        </footer>
+
+  <!-- Submit a Trap Modal -->
+        <div class="modal fade" id="submitModal" tabindex="-1" aria-labelledby="submitModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0 shadow">
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title fw-bold" id="submitModalLabel">
+                            <i class="bi bi-flag-fill me-2"></i>Report a Subscription
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close btn-close-white"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="submitTrapForm" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="87cf3df8-7c8d-40be-9d83-aa7d91e3a94b" />
+                            <input type="hidden" name="subject" value="HowToCancel — New Trap / Cancellation Report" />
+                            <input type="hidden" name="from_name" value="HowToCancel Directory" />
+
+                            <div class="mb-3">
+                                <label for="trapServiceName" class="form-label fw-semibold"
+                                    >Service / Company Name</label
+                                >
+                                <input
+                                    type="text"
+                                    id="trapServiceName"
+                                    name="service_name"
+                                    class="form-control"
+                                    placeholder="e.g., Cult.fit, Adobe Creative Cloud"
+                                    required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="trapSteps" class="form-label fw-semibold">What Are The Steps?</label>
+                                <textarea
+                                    id="trapSteps"
+                                    name="steps_or_trap"
+                                    class="form-control"
+                                    rows="3"
+                                    placeholder="e.g., Must revoke UPI Autopay manually inside GPay/PhonePe even after cancelling in the app..."
+                                    required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100 fw-semibold">
+                                Submit Report &amp; Help Others
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Report Website or Subscription Steps Issue Modal -->
+        <div
+            class="modal fade"
+            id="reportIssueModal"
+            tabindex="-1"
+            aria-labelledby="reportIssueModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold" id="reportIssueModalLabel">Report a Problem</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="reportIssueForm" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="87cf3df8-7c8d-40be-9d83-aa7d91e3a94b" />
+                            <input
+                                type="hidden"
+                                name="subject"
+                                value="HowToCancel — Website or Subscription Step Issue" />
+                            <input type="hidden" name="from_name" value="HowToCancel Issue Reporter" />
+
+                            <div class="mb-3">
+                                <label for="issueType" class="form-label fw-semibold">What Needs Fixing?</label>
+                                <select id="issueType" name="issue_type" class="form-select" required>
+                                    <option value="" selected disabled>Choose an option...</option>
+                                    <option value="Outdated cancellation steps">Outdated cancellation steps</option>
+                                    <option value="Wrong UPI or billing info">Wrong UPI or billing info</option>
+                                    <option value="Broken button, search, or layout">
+                                        Broken button, search, or layout
+                                    </option>
+                                    <option value="Other website problem">Other website problem</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="affectedServiceOrPage" class="form-label fw-semibold"
+                                    >Service / Guide or Page Name</label
+                                >
+                                <input
+                                    type="text"
+                                    id="affectedServiceOrPage"
+                                    name="target_item"
+                                    class="form-control"
+                                    placeholder="e.g., Netflix, GPay Autopay guide, or Search bar"
+                                    required />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="issueDetails" class="form-label fw-semibold">Describe the Problem</label>
+                                <textarea
+                                    id="issueDetails"
+                                    name="issue_details"
+                                    class="form-control"
+                                    rows="3"
+                                    placeholder="Tell us what changed in the cancellation flow or what broke on the website..."
+                                    required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-dark w-100 fw-semibold">Send Issue Report</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lightweight Review & Feedback Modal -->
+<div class="modal fade" id="reviewFeedbackModal" tabindex="-1" aria-labelledby="reviewFeedbackModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="reviewFeedbackModalLabel">Share Your Feedback</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="reviewFeedbackForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="87cf3df8-7c8d-40be-9d83-aa7d91e3a94b" />
+          <input type="hidden" name="subject" value="HowToCancel — New User Review" />
+          <input type="hidden" name="from_name" value="HowToCancel Reviews" />
+
+          <div class="mb-3">
+            <label class="form-label fw-semibold d-block">How Helpful Was HowToCancel?</label>
+            <div class="btn-group w-100" role="group" aria-label="Rating out of 5 stars">
+              <input type="radio" class="btn-check" name="rating" id="rate1" value="1 / 5" required />
+              <label class="btn btn-outline-secondary btn-sm" for="rate1">1 &#9733;</label>
+
+              <input type="radio" class="btn-check" name="rating" id="rate2" value="2 / 5" />
+              <label class="btn btn-outline-secondary btn-sm" for="rate2">2 &#9733;</label>
+
+              <input type="radio" class="btn-check" name="rating" id="rate3" value="3 / 5" />
+              <label class="btn btn-outline-secondary btn-sm" for="rate3">3 &#9733;</label>
+
+              <input type="radio" class="btn-check" name="rating" id="rate4" value="4 / 5" />
+              <label class="btn btn-outline-secondary btn-sm" for="rate4">4 &#9733;</label>
+
+              <input type="radio" class="btn-check" name="rating" id="rate5" value="5 / 5" checked />
+              <label class="btn btn-outline-secondary btn-sm" for="rate5">5 &#9733;</label>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="reviewerName" class="form-label fw-semibold">Your Name or Handle <span class="text-muted fw-normal">(Optional)</span></label>
+            <input
+              type="text"
+              id="reviewerName"
+              name="reviewer_name"
+              class="form-control"
+              placeholder="e.g., Riya, Subham, or Anonymous"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="reviewedService" class="form-label fw-semibold">Service or Guide Used <span class="text-muted fw-normal">(Optional)</span></label>
+            <input
+              type="text"
+              id="reviewedService"
+              name="reviewed_service"
+              class="form-control"
+              placeholder="e.g., Hotstar, GPay Autopay, Adobe"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="reviewComment" class="form-label fw-semibold">Your Review or Suggestion</label>
+            <textarea
+              id="reviewComment"
+              name="review_comment"
+              class="form-control"
+              rows="3"
+              placeholder="Did the steps work for you? What could be clearer or added next?"
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 fw-semibold">
+            Submit Review
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Full Bootstrap 5.3 JS Bundle CDN URL -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+  <!-- Data & Logic Files -->
+        <script src="data.js"></script>
+        <script src="app.js"></script>
+</body>
+</html>
