@@ -2787,7 +2787,7 @@ const GUIDES_DATA = [
     estimatedTime: "2–4 mins",
     lastVerified: "Nov 2026",
     directUrl: "https://help.minecraft.net/hc/en-us/articles/24292373076749-Cancel-a-Minecraft-Marketplace-Pass-Subscription",
-    darkPatterns: ["Platform & Store Billing Split (Microsoft, Google Play, Apple, Consoles)", "18-Month Realm Deletion Window After Cancellation", "App Uninstall Does Not Cancel Trap", "Account Mismatch Across Devices"],
+    darkPatterns: ["Platform & Store Billing Split", "18-Month Realm Deletion Window After Cancellation", "App Uninstall Does Not Cancel Trap", "Account Mismatch Across Devices"],
     summary: "Cancel a Minecraft Realms or Marketplace Pass subscription on the store platform where you started it—via your Microsoft Account on PC/Xbox, Google Play on Android/Chromebook, Apple Subscriptions on iOS, or Nintendo/PlayStation store settings.",
     steps: [
       "**Cancel on PC or Xbox (Microsoft Account):** Sign in to your **Microsoft Account** in a browser (or **Services & Subscriptions** for Xbox), open **Subscriptions**, find your **Minecraft Realms** or **Marketplace Pass** subscription, and select **Manage > Cancel subscription** (confirming in the prompt).",
@@ -2923,7 +2923,7 @@ const GUIDES_DATA = [
     darkPatterns: ["Store vs. UPI Mandate Billing Split", "Wallet Top-Up vs. Recurring Mandate Confusion", "App Uninstall Does Not Cancel Trap", "No Automatic Past-Debit Refunds"],
     summary: "Cancel a Teen Patti subscription in Google Play or Apple Subscriptions if store-billed, and revoke any active UPI AutoPay or recurring mandate in your payment or banking app before future debits trigger.",
     steps: [
-      "**Revoke UPI AutoPay or Payment Mandate:** Open the UPI or payment app where auto-debits were authorized (such as Google Pay, PhonePe, Paytm, or BHIM), open **AutoPay / Mandates**, locate any active mandate for the Teen Patti app or merchant, and cancel/revoke it with your **UPI PIN** (or check standing instructions/e-mandates in your bank app).",
+      "**Revoke UPI AutoPay or PaymentpaymentTip: \"Uninstalling a Teen Patti app does not cancel an active UPI AutoPay mandate or store subscription, revoking a mandate stops future scheduled debits rather than automatically refunding completed payments, and wallet deposits/top-ups generally cannot be cancelled once credited to a game balance.\", Mandate:** Open the UPI or payment app where auto-debits were authorized (such as Google Pay, PhonePe, Paytm, or BHIM), open **AutoPay / Mandates**, locate any active mandate for the Teen Patti app or merchant, and cancel/revoke it with your **UPI PIN** (or check standing instructions/e-mandates in your bank app).",
       "**Cancel Store Subscription (If Applicable):** Open **Google Play** on the Google account used for payment, tap your **Profile icon > Payments & subscriptions > Subscriptions**, check for any Teen Patti subscription, and tap **Cancel subscription** following the prompts (or check **Apple Subscriptions** on iOS).",
       "**Verify Before Renewal & Save Proof:** Confirm that any linked mandate and store subscription show as cancelled/revoked before the next billing window; do not rely on uninstalling the app to stop recurring charges, and save confirmation screenshots or transaction references (UTR/RRN) if you need support or dispute help."
     ],
